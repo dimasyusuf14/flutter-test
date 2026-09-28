@@ -1,5 +1,6 @@
-String kBaseUrl = 'https://viaalma-api.fetch.co.id';
+String kBaseUrl = 'https://api.github.com';
 
 class APIEndpoint {
-  static String login = '/driver/login';
+  static String users = '/users';
+  static String userUpdate = '/users';
 }

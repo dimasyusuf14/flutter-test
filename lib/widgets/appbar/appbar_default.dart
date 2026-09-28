@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test_gias/utilities/utilities.dart';
 
@@ -39,7 +38,7 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
     this.customHeight = 8,
     this.withActionPadding = true,
     this.titleStyle,
-    this.leadingIconColor = kColorWhite,
+    this.leadingIconColor = kColorPrimary,
     this.gradient,
     this.backgroundImage,
   });
@@ -113,6 +112,7 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
                             leadingIcon,
                             color: leadingIconColor,
                             size: 22,
+                            fontWeight: FontWeight.bold,
                           ),
                           onPressed: () {
                             if (onLeadingPressed != null) {

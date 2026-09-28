@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
-
 class ApiResponse<T> {
   final bool success;
   final T? data;
@@ -41,7 +40,7 @@ class ApiResponse<T> {
         success = status >= 200 && status < 300;
       }
 
-      data = decoded['data'];
+      data = decoded.containsKey('data') ? decoded['data'] : decoded;
 
       final rawError = decoded['error'];
       if (!success && rawError is Map) {
@@ -115,7 +114,7 @@ class ApiResponse<T> {
         success = status >= 200 && status < 300;
       }
 
-      data = decoded['data'];
+      data = decoded.containsKey('data') ? decoded['data'] : decoded;
 
       final rawError = decoded['error'];
       if (!success && rawError is Map) {

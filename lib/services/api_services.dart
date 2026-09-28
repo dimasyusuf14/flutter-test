@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test_gias/services/api_response.dart';
@@ -6,13 +5,11 @@ import 'package:flutter_test_gias/utilities/api_constant.dart';
 import 'package:get/get.dart' as get_pkg;
 import 'package:get_storage/get_storage.dart';
 
-
 enum APIMethod { post, get, delete, put }
 
 class ApiServices extends get_pkg.GetxService {
   late final Dio _dio;
   late CancelToken _cancelToken;
-
 
   Dio get dio => _dio;
 
@@ -213,12 +210,7 @@ class ApiServices extends get_pkg.GetxService {
 
     headers.addAll(additionalHeaders);
 
-    String path;
-    if (version == 1) {
-      path = '/api$endPoint$param';
-    } else {
-      path = '/api/v$version$endPoint$param';
-    }
+    final path = '$endPoint$param';
 
     try {
       Response<dynamic> response;

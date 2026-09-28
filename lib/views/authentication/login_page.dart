@@ -102,8 +102,6 @@ class LoginPage extends StatelessWidget {
                   fontSize: 16,
                   onTap: () {},
                   color: kColorPrimary,
-                  textContainerDecoration: BoxDecoration(),
-                  borderRadius: 8,
                 ),
             ],
           ),

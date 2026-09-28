@@ -159,21 +159,17 @@ class _BottomSheetContent extends StatelessWidget {
           // Buttons
           ButtonPrimary(
             onTap: () => Get.back(result: true),
-            borderRadius: 8,
             text: confirmText,
-            textContainerDecoration: const BoxDecoration(),
           ),
           if (showCancelButton) ...[
             const SizedBox(height: 12),
             ButtonPrimary(
               onTap: () => Get.back(result: false),
-              borderRadius: 8,
               text: cancelText,
               borderColor: kColorGray200,
               borderWidth: 1.5,
               color: kColorGray300,
               textcolor: kColorGray600,
-              textContainerDecoration: const BoxDecoration(),
             ),
           ],
         ],

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_gias/utilities/utilities.dart';
 
-enum ButtonIconPosition { leading, trailing }
-
 class ButtonPrimary extends StatelessWidget {
   const ButtonPrimary({
     super.key,
@@ -18,12 +16,6 @@ class ButtonPrimary extends StatelessWidget {
     this.fontSize = 14,
     this.borderColor,
     this.borderWidth = 0,
-    this.borderRadius = 4,
-    this.iconPosition = ButtonIconPosition.leading,
-    this.textContainerPadding,
-    this.textContainerDecoration,
-    this.iconContainerPadding,
-    this.iconContainerDecoration,
   });
 
   final VoidCallback onTap;
@@ -38,22 +30,14 @@ class ButtonPrimary extends StatelessWidget {
   final double fontSize;
   final Color? borderColor;
   final double borderWidth;
-  final double borderRadius;
-  final ButtonIconPosition iconPosition;
-  final EdgeInsetsGeometry? textContainerPadding;
-  final BoxDecoration? textContainerDecoration;
-  final EdgeInsetsGeometry? iconContainerPadding;
-  final BoxDecoration? iconContainerDecoration;
 
   @override
   Widget build(BuildContext context) {
     final isEnabled = isActive && !isLoading;
     return Container(
       decoration: BoxDecoration(
-        color: isActive
-            ? color
-            : kColorGray200,
-        borderRadius: BorderRadius.circular(borderRadius),
+        color: isActive ? color : kColorGray50,
+        borderRadius: BorderRadius.circular(4),
         border: borderWidth > 0 && borderColor != null
             ? Border.all(color: borderColor!, width: borderWidth)
             : null,
@@ -61,17 +45,13 @@ class ButtonPrimary extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(4),
           onTap: isEnabled ? onTap : () {},
           child: Container(
-            padding: const EdgeInsets.all(4),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (isLoading) ...[
-                    SizedBox(
+              child: isLoading
+                  ? SizedBox(
                       width: 16,
                       height: 16,
                       child: CircularProgressIndicator(
@@ -80,81 +60,29 @@ class ButtonPrimary extends StatelessWidget {
                           isActive ? textcolor : kColorGray700,
                         ),
                       ),
-                    ),
-                    SizedBox(width: iconSpacing),
-                  ] else if (icon != null &&
-                      iconPosition == ButtonIconPosition.leading) ...[
-                    Container(
-                      padding: iconContainerPadding ?? const EdgeInsets.all(8),
-                      decoration:
-                          iconContainerDecoration ??
-                          BoxDecoration(
-                            borderRadius: BorderRadius.circular(borderRadius),
-                            color: isActive
-                                ? textcolor.withValues(alpha: 0.2)
-                                : kColorGray700.withValues(alpha: 0.2),
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (icon != null) ...[
+                          SizedBox(width: iconSpacing),
+                          Icon(
+                            icon,
+                            color: isActive ? textcolor : kColorGray700,
+                            size: iconSize,
                           ),
-                      child: Icon(
-                        icon,
-                        color: isActive ? textcolor : kColorGray700,
-                        size: iconSize,
-                      ),
-                    ),
-                    SizedBox(width: iconSpacing),
-                  ],
-
-                  Flexible(
-                    child: Container(
-                      padding:
-                          textContainerPadding ??
-                          const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 8,
+                        ],
+                        const SizedBox(width: 4),
+                        Text(
+                          text,
+                          style: TStyle.poppins16SemiBold.copyWith(
+                            color: isActive ? textcolor : kColorGray700,
+                            fontSize: fontSize,
                           ),
-                      decoration:
-                          textContainerDecoration ??
-                          BoxDecoration(
-                            borderRadius: BorderRadius.circular(borderRadius),
-                            color: isActive
-                                ? textcolor.withValues(alpha: 0.2)
-                                : kColorGray700.withValues(alpha: 0.2),
-                          ),
-                      child: Text(
-                        text,
-                        style: TStyle.poppins16SemiBold.copyWith(
-                          color: isActive
-                              ? textcolor
-                              : kColorGray600,
-                          fontSize: fontSize,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
+                      ],
                     ),
-                  ),
-                  if (!isLoading &&
-                      icon != null &&
-                      iconPosition == ButtonIconPosition.trailing) ...[
-                    SizedBox(width: iconSpacing),
-                    Container(
-                      padding:
-                          iconContainerPadding ?? const EdgeInsets.all(12),
-                      decoration:
-                          iconContainerDecoration ??
-                          BoxDecoration(
-                            borderRadius: BorderRadius.circular(borderRadius),
-                            color: isActive
-                                ? textcolor.withValues(alpha: 0.2)
-                                : kColorGray700.withValues(alpha: 0.2),
-                          ),
-                      child: Icon(
-                        icon,
-                        color: isActive ? textcolor : kColorGray700,
-                        size: iconSize,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
             ),
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter_test_gias/views/add_user/add_user_page.dart';
-import 'package:flutter_test_gias/views/home/home_page.dart';
+import 'package:flutter_test_gias/views/users/users_page.dart';
 import 'package:flutter_test_gias/views/main/main_page.dart';
 import 'package:flutter_test_gias/views/update_user/update_user_page.dart';
 import 'package:get/get.dart';
@@ -15,8 +15,8 @@ class PagesRoute {
       transition: Transition.fade,
     ),
     GetPage<void>(
-      name: RouteName.homePage,
-      page: HomePage.new,
+      name: RouteName.usersPage,
+      page: UsersPage.new,
       transition: Transition.fade,
     ),
     GetPage<void>(
